@@ -47,7 +47,7 @@ def run_sanic_server(encrypt_key: str = ENCRYPT_KEY.strip(),
 
     async def print_notice():
         logger.info("非局域网访问需要确保服务器有静态公网IP")
-        logger.info(f"需要在飞书后台配置订阅信息URL = 'https://{host}:{port}{PATH_EVENT}'")
+        logger.info(f"需要在飞书后台配置订阅信息URL = 'http://{host}:{port}{PATH_EVENT}'")
 
     app.add_task(print_notice())
     app.run(host='0.0.0.0', port=port)
