@@ -1,9 +1,12 @@
+import sys
 import asyncio
 import logging
 import requests
 from sanic import Sanic, Blueprint
 from sanic.log import logger
 
+# Linux服务器上部署需要增加模块地址到PYTHONPATH
+sys.path.append('/home/feishu_bot')
 from apis import setup_event_blueprint
 from consts import VERIFY_TOKEN, ENCRYPT_KEY, PATH_EVENT
 from models import EventContent, Event
