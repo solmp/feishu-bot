@@ -2,6 +2,13 @@
 
 > 飞书群聊机器人
 
+## 使用说明
+- 飞书官网创建应用并做好相关配置：[开发文档](https://open.feishu.cn/document/home/index) 
+- 在consts.py文件中配置必要参数【PATH_EVENT、APP_ID、APP_SECRET、VERIFY_TOKEN、ENCRYPT_KEY】
+- 服务器部署：保持后台运行，将错误信息重定向输出到标准输出中，标准输出内容保存在log文件下
+  - 修改 server.py 文件中 sys.path.append 的路径为服务器模块所在路径
+  - 运行：`nohup python /home/www/feishu-bot/feishu/server.py >> /home/www/feishu-bot/feishu/feishu_bot.log 2>&1 &`
+
 ## models
 
 > 各种事件、消息格式、类型
