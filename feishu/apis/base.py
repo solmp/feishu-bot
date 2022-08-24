@@ -3,7 +3,6 @@ import hashlib
 import inspect
 import linecache
 import logging
-import os
 import re
 import secrets
 import textwrap
@@ -114,25 +113,7 @@ def allow_async_call(func):
         # 去掉decorator
         source = re.sub(r'\s*@allow_async_call\s*\n', '', source)
 
-        # 试着从源文件import各种依赖，以免调用的时候出问题
-        filename = func.__code__.co_filename[:-3].replace(os.path.sep, '.')
-        paths = filename.split('.')
-        for i in range(1, min(6, len(paths) + 1)):
-            path = ".".join(paths[-i:])
-            # if "." not in path:
-            #     path = "." + path
-            if "-" in path:
-                break
-            try:
-                insert = f"from {path} import *\n"
-                exec(insert)
-            except:
-                continue
-            else:
-                source = insert + source
-
-                # 成功一次就应该够了
-                break
+        # import各种依赖
         insert = "" \
                  "from typing import *\n" \
                  "from feishu import *\n" \
@@ -142,9 +123,7 @@ def allow_async_call(func):
                  "from feishu.utils import *\n" \
                  ""
         source = insert + source
-
         # 生成临时文件并预编译
-        # 这个输出太多了暂时禁用
         # BaseAPI.logger.debug(f"自动生成的async版本API:{name} ---\n{source}")
         filename = "api_" + secrets.token_hex(4) + ".py"
         compiled = compile(source, filename, mode="exec")
