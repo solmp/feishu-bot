@@ -11,6 +11,7 @@ __all__ = [
 class EventType(str, Enum):
     MESSAGE = "message"
     im_message_receive_v1 = "im.message.receive_v1"
+    im_message_reaction_created_v1 = "im.message.reaction.created_v1"
 
 
 class EventContent(BaseModel):

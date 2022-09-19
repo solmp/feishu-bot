@@ -29,6 +29,14 @@ def create_sanic_server(verify_token: str = '', encrypt_key: str = '') -> Sanic:
                 text = f"""<at user_id="ou_1e20496774ba8483cdcb0cf8398296b0">TEST</at> {event.message}"""
                 message_id = client.send_text(text, receive_id)
                 print(f"message_id: {message_id}")
+            await send_message(event.event)
+        elif event_type == "im.message.reaction.created_v1":
+            async def send_message(event: [EventContent]):
+                client = FeishuClient()
+                receive_id = event.user_id.open_id
+                text = f"""<at user_id="ou_1e20496774ba8483cdcb0cf8398296b0">TEST</at> {event.reaction_type.emoji_type}"""
+                message_id = client.send_text(text, receive_id)
+                print(f"message_id: {message_id}")
 
             await send_message(event.event)
 

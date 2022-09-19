@@ -9,7 +9,7 @@ from sanic import Blueprint, response
 from sanic.request import Request
 from typing import Optional, Callable, Awaitable, Union
 
-from feishu.models import (Event, EventContent, EventType, ReceiveMessageEven)
+from feishu.models import (Event, EventContent, EventType, ReceiveMessageEven, EmojiMessageEven)
 from feishu.utils import decrypt, FeishuError, ERRORS
 
 logger = logging.getLogger("feishu")
@@ -92,6 +92,7 @@ def adapt_event(event_type: [str], event: [EventContent]) -> Union[dict, EventCo
     """适配event的真实类型"""
     event_cls: Optional[EventContent] = {
         EventType.im_message_receive_v1: ReceiveMessageEven,
+        EventType.im_message_reaction_created_v1: EmojiMessageEven,
     }.get(event_type)
 
     if event_cls:

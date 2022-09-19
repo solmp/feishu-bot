@@ -10,7 +10,7 @@ from ..message.im.content import (TextContent, PostContent, ImageContent, Intera
 
 __all__ = [
     'SenderType', 'ChatType',
-    'Mentions', 'Sender', 'Message', 'ReceiveMessageEven'
+    'Mentions', 'Sender', 'Message', 'ReceiveMessageEven', 'EmojiMessageEven'
 ]
 
 
@@ -95,3 +95,16 @@ class ReceiveMessageEven(EventContent):
         if type(content) == str:
             kwargs['message']['content'] = json.loads(content)
         super(ReceiveMessageEven, self).__init__(**kwargs)
+
+
+class ReactionType(BaseModel):
+    emoji_type: str
+
+
+class EmojiMessageEven(EventContent):
+    message_id: str
+    reaction_type: ReactionType
+    operator_type: str
+    user_id: UserID
+    app_id: Optional[str]
+    action_time: str

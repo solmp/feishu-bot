@@ -1,7 +1,7 @@
 from .event.base import (Event, EventContent, EventType)
 from .message.base import (SendMessage, MessageContent, MessageType, ReceiveIdType)
 
-from .event.receive_message import ReceiveMessageEven
+from .event.receive_message import ReceiveMessageEven, EmojiMessageEven
 
 from .message.im.message import (TextMessage, PostMessage, ImageMessage, InteractiveMessage, ShareChatMessage,
                                  ShareUserMessage, AudioMessage, MediaMessage, FileMessage, StickerMessage)
