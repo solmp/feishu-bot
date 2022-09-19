@@ -1,4 +1,6 @@
 import config
+# SYS_PATH = "/home/feishu-bot"
+SYS_PATH = config.SYS_PATH
 
 base_url = "https://open.feishu.cn/open-apis"
 # PATH_EVENT = "/feishu/event"

@@ -65,6 +65,7 @@
 ## 其它
 
 - consts：配置常量
+    - SYS_PATH：服务器中项目路径
     - base_url：飞书开放平台服务端 API 的 URL
     - PATH_EVENT：事件订阅请求网址
     - APP_ID, APP_SECRET, VERIFY_TOKEN, ENCRYPT_KEY
